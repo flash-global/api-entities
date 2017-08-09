@@ -1,6 +1,6 @@
 {
-  "name": "fei/entities",
-  "description": "Entities descriptors and helpers",
+  "name": "fei/api-entities",
+  "description": "Entities descriptors and helpers for objective-php/gateway",
   "type": "library",
   "license": "Proprietary",
   "require": {
