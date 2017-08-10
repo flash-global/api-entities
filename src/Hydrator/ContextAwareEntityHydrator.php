@@ -21,8 +21,22 @@ class ContextAwareEntityHydrator extends ClassMethods implements DenormalizedDat
         
         $this->removeFilter('is');
     }
-    
-    
+
+    public function extract($object)
+    {
+        $data = parent::extract($object);
+        foreach($data as $key => $value)
+        {
+            if($value instanceof \DateTime)
+            {
+                $data[$key] = $value->format(\DateTime::ISO8601);
+            }
+        }
+
+        return $data;
+    }
+
+
     public function hydrate(array $data, $object)
     {
         if (!$object instanceof ContextAwareEntityInterface) {
