@@ -13,7 +13,7 @@ use Fei\Entities\Exception\ContextException;
 
 trait ContextAwareTrait
 {
-    protected $context;
+    protected $context = [];
     
     /**
      * @param mixed $context
