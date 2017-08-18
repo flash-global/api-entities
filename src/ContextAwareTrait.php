@@ -30,7 +30,7 @@ trait ContextAwareTrait
                     throw new ContextException(sprintf('Context key must be a string, not an integer (key: "%s").', $key));
                 }
                 
-                if(!is_scalar($value))
+                if($value && !is_scalar($value))
                 {
                     throw new ContextException(sprintf('Context value must be scalar (key: "%s").', $key));
                 }
@@ -44,7 +44,7 @@ trait ContextAwareTrait
                 throw new ContextException(sprintf('Context key must be a string, not an integer (key: "%s").', $key));
             }
     
-            if (!is_scalar($value)) {
+            if ($value && !is_scalar($value)) {
                 throw new ContextException(sprintf('Context value must be scalar (key: "%s").', $key));
             }
     
