@@ -8,7 +8,6 @@
 
 namespace Fei\Entities\Exception;
 
-
 class ContextException extends \Exception
 {
     

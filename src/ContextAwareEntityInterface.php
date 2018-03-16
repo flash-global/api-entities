@@ -2,7 +2,6 @@
 
 namespace Fei\Entities;
 
-
 interface ContextAwareEntityInterface
 {
     /**
@@ -17,5 +16,4 @@ interface ContextAwareEntityInterface
      * @return mixed
      */
     public function getContext($context = null, $default = null);
-    
 }

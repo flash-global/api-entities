@@ -8,7 +8,6 @@
 
 namespace Fei\Entities;
 
-
 use Fei\Entities\Exception\ContextException;
 
 trait ContextAwareTrait
@@ -22,23 +21,19 @@ trait ContextAwareTrait
      */
     public function setContext($context, $value = null)
     {
-        if(is_null($value) && is_array($context))
-        {
-            foreach($context as $key => $value)
-            {
+        if (is_null($value) && is_array($context)) {
+            foreach ($context as $key => $value) {
                 if (is_int($key)) {
                     throw new ContextException(sprintf('Context key must be a string, not an integer (key: "%s").', $key));
                 }
                 
-                if($value && !is_scalar($value))
-                {
+                if ($value && !is_scalar($value)) {
                     throw new ContextException(sprintf('Context value must be scalar (key: "%s").', $key));
                 }
                 
                 $this->context[$key] = $value;
             }
-        }
-        else {
+        } else {
             $key = $context;
             if (is_int($key)) {
                 throw new ContextException(sprintf('Context key must be a string, not an integer (key: "%s").', $key));

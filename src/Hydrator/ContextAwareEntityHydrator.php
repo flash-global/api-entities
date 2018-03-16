@@ -25,10 +25,8 @@ class ContextAwareEntityHydrator extends ClassMethods implements DenormalizedDat
     public function extract($object)
     {
         $data = parent::extract($object);
-        foreach($data as $key => $value)
-        {
-            if($value instanceof \DateTime)
-            {
+        foreach ($data as $key => $value) {
+            if ($value instanceof \DateTime) {
                 $data[$key] = $value->format(\DateTime::ISO8601);
             }
         }
@@ -61,13 +59,13 @@ class ContextAwareEntityHydrator extends ClassMethods implements DenormalizedDat
     {
         $data = $this->extract($entity);
         
-        if($entity instanceof EntityInterface)
-        {
+        if ($entity instanceof EntityInterface) {
             // remove Entity specific fields
             $fields = $entity->getEntityFields();
-            foreach($data as $key => $value)
-            {
-                if(!in_array($key, $fields)) unset($data[$key]);
+            foreach ($data as $key => $value) {
+                if (!in_array($key, $fields)) {
+                    unset($data[$key]);
+                }
             }
         }
         
@@ -89,5 +87,4 @@ class ContextAwareEntityHydrator extends ClassMethods implements DenormalizedDat
         
         return $data;
     }
-    
 }
