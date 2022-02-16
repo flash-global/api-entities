@@ -1,5 +1,5 @@
 <?php
-
+namespace Tests\Fei\Entities;
 
 /**
  * Inherited Methods
