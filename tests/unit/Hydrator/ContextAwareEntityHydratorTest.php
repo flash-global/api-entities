@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gauthier
- * Date: 09/08/2017
- * Time: 10:11
- */
 
 namespace Tests\Fei\Entities\Hydrator;
-
 
 use Codeception\Test\Unit;
 use Fei\Entities\ContextAwareEntityInterface;
@@ -23,36 +16,37 @@ class ContextAwareEntityHydratorTest extends Unit
 {
     public function testHydration()
     {
-        
+
         $hydrator = new ContextAwareEntityHydrator();
-        
+
         $entity = new SomeEntity();
-        
+
         $hydrator->hydrate(['foo' => 'foo value', 'bar' => 'bar value', 'context' => ['x' => 'y']], $entity);
-        
+
         $this->assertEquals('foo value', $entity->getFoo());
         $this->assertEquals('bar value', $entity->getBar());
         $this->assertEquals('y', $entity->getContext('x'));
-        
     }
-    
+
+    /**
+     * @return SomeEntity
+     */
     public function testHydrationUsingDenormalizedContext()
     {
-        
+
         $hydrator = new ContextAwareEntityHydrator();
-        
+
         $entity = new SomeEntity();
-        
+
         $hydrator->hydrate(['foo' => 'foo value', 'bar' => 'bar value', 'context_x' => 'y'], $entity);
-        
+
         $this->assertEquals('foo value', $entity->getFoo());
         $this->assertEquals('bar value', $entity->getBar());
         $this->assertEquals('y', $entity->getContext('x'));
-        
+
         return $entity;
-        
     }
-    
+
     /**
      * @depends testHydrationUsingDenormalizedContext
      */
@@ -61,7 +55,7 @@ class ContextAwareEntityHydratorTest extends Unit
         $hydrator = new ContextAwareEntityHydrator();
         $this->assertEquals(['foo' => 'foo value', 'bar' => 'bar value', 'context' => ['x' => 'y']], $hydrator->extract($entity));
     }
-    
+
     /**
      * @depends testHydrationUsingDenormalizedContext
      */
@@ -72,16 +66,15 @@ class ContextAwareEntityHydratorTest extends Unit
     }
 }
 
-
 class SomeEntity implements ContextAwareEntityInterface
 {
-    
+
     use ContextAwareTrait;
-    
+
     protected $foo;
-    
+
     protected $bar;
-    
+
     /**
      * @return mixed
      */
@@ -89,7 +82,7 @@ class SomeEntity implements ContextAwareEntityInterface
     {
         return $this->foo;
     }
-    
+
     /**
      * @param mixed $foo
      *
@@ -98,10 +91,10 @@ class SomeEntity implements ContextAwareEntityInterface
     public function setFoo($foo)
     {
         $this->foo = $foo;
-    
+
         return $this;
     }
-    
+
     /**
      * @return mixed
      */
@@ -109,7 +102,7 @@ class SomeEntity implements ContextAwareEntityInterface
     {
         return $this->bar;
     }
-    
+
     /**
      * @param mixed $bar
      *
@@ -118,8 +111,7 @@ class SomeEntity implements ContextAwareEntityInterface
     public function setBar($bar)
     {
         $this->bar = $bar;
-    
+
         return $this;
     }
-    
 }
