@@ -24,6 +24,9 @@
     "codeception/codeception": "^2.4"
   },
   "autoload": {
+    "files": [
+      "objective-php-polyfill.php"
+    ],
     "psr-4": {
       "Fei\\Entities\\": "src/"
     }
