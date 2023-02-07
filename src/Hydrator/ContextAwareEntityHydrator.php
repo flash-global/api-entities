@@ -3,8 +3,8 @@
 namespace Fei\Entities\Hydrator;
 
 use Fei\Entities\ContextAwareEntityInterface;
-use ObjectivePHP\Gateway\Entity\EntityInterface;
-use ObjectivePHP\Gateway\Hydrator\DenormalizedDataExtractorInterface;
+use Fei\Entities\ObjectivePHP\Gateway\Entity\EntityInterface;
+use Fei\Entities\ObjectivePHP\Gateway\Hydrator\DenormalizedDataExtractorInterface;
 use Zend\Hydrator\ClassMethods;
 
 /**
