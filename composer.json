@@ -12,8 +12,7 @@
   ],
   "require": {
     "php" : "^7.0",
-    "zendframework/zend-filter": "^2.7",
-    "objective-php/gateway": "^1.0.0"
+    "zendframework/zend-filter": "^2.7"
   },
   "require-dev": {
     "zendframework/zend-eventmanager": "^3.2",
