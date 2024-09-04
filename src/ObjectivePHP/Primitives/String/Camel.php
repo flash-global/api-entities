@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Fei\Entities\ObjectivePHP\Primitives\String;
 
 class Camel
 {
