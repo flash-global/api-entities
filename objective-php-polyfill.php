@@ -8,8 +8,8 @@ $missingClasses = [
     'ObjectivePHP\Primitives\String\Snake',
     'ObjectivePHP\Primitives\String\Str',
     'ObjectivePHP\Primitives\Collection\Collection',
-    'ObjectivePHP\Primitives\Collection\Collection\Normalizer\ObjectNormalizer',
-    'ObjectivePHP\Primitives\Collection\Collection\Normalizer\PrimitiveNormalizer',
+    'ObjectivePHP\Primitives\Collection\Normalizer\ObjectNormalizer',
+    'ObjectivePHP\Primitives\Collection\Normalizer\PrimitiveNormalizer',
     'ObjectivePHP\Gateway\Entity\EntityInterface',
     'ObjectivePHP\Gateway\Entity\Entity',
     'ObjectivePHP\Gateway\Hydrator\DenormalizedDataExtractorInterface'
