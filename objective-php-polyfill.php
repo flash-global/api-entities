@@ -1,9 +1,13 @@
 <?php
 
-if (!interface_exists('ObjectivePHP\Gateway\Entity\EntityInterface')) {
-    class_alias('Fei\Entities\ObjectivePHP\Gateway\Entity\EntityInterface', 'ObjectivePHP\Gateway\Entity\EntityInterface');
-}
+$missingClasses = [
+    'ObjectivePHP\Gateway\Entity\EntityInterface',
+    'ObjectivePHP\Gateway\Entity\Entity',
+    'ObjectivePHP\Gateway\Hydrator\DenormalizedDataExtractorInterface'
+];
 
-if (!interface_exists('ObjectivePHP\Gateway\Hydrator\DenormalizedDataExtractorInterface')) {
-    class_alias('Fei\Entities\ObjectivePHP\Gateway\Hydrator\DenormalizedDataExtractorInterface', 'ObjectivePHP\Gateway\Hydrator\DenormalizedDataExtractorInterface');
+foreach ($missingClasses as $missingClass) {
+    if (!interface_exists($missingClass) && !class_exists($missingClass)) {
+        class_alias('Fei\Entities\\' . $missingClass, $missingClass);
+    }
 }
