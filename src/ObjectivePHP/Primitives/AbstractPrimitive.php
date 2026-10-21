@@ -2,7 +2,6 @@
 
 namespace Fei\Entities\ObjectivePHP\Primitives;
 
-
 /**
  * Class AbstractPrimitive
  * @package ObjectivePHP\Primitives
@@ -64,7 +63,7 @@ abstract class AbstractPrimitive implements PrimitiveInterface
      *
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->value;
     }
@@ -107,12 +106,11 @@ abstract class AbstractPrimitive implements PrimitiveInterface
      * @param $class
      * @return bool
      */
-    static public function isPrimitive($class)
+    public static function isPrimitive($class)
     {
         // check that $primitive actually is a Primitive class name
         $reflectionClass = new \ReflectionClass($class);
 
         return $reflectionClass->implementsInterface(PrimitiveInterface::class);
-
     }
 }

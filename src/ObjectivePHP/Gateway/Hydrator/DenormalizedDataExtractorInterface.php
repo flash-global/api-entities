@@ -2,7 +2,6 @@
 
 namespace Fei\Entities\ObjectivePHP\Gateway\Hydrator;
 
-
 interface DenormalizedDataExtractorInterface
 {
     public function extractDenormalized($entity);

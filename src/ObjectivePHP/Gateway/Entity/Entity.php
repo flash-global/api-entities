@@ -50,7 +50,7 @@ class Entity extends \ArrayObject implements EntityInterface
      */
     public function isNew(): bool
     {
-        return !$this[$this->entityIdentifier] ?? true;
+        return !($this[$this->entityIdentifier] ?? false);
     }
     
     /**
@@ -58,7 +58,7 @@ class Entity extends \ArrayObject implements EntityInterface
      *
      * @return mixed
      */
-    public function offsetGet($index)
+    public function offsetGet(mixed $index): mixed
     {
         $getter = 'get' . Camel::case($index);
         if (method_exists($this, $getter)) {
@@ -74,7 +74,7 @@ class Entity extends \ArrayObject implements EntityInterface
      *
      * @return mixed
      */
-    public function offsetSet($index, $value)
+    public function offsetSet(mixed $index, mixed $value): void
     {
         $setter = 'set' . Camel::case($index);
         if (method_exists($this, $setter)) {
@@ -89,11 +89,11 @@ class Entity extends \ArrayObject implements EntityInterface
      *
      * @return mixed
      */
-    public function offsetUnset($index)
+    public function offsetUnset(mixed $index): void
     {
         $setter = 'set' . Camel::case($index);
         if (method_exists($this, $setter)) {
-            return $this->$setter(null);
+            $this->$setter(null);
         } else {
             parent::offsetUnset($index);
         }
@@ -104,7 +104,7 @@ class Entity extends \ArrayObject implements EntityInterface
      *
      * @return bool
      */
-    public function offsetExists($index)
+    public function offsetExists(mixed $index): bool
     {
         if (method_exists($this, 'get' . Camel::case($index))) {
             return true;
@@ -123,8 +123,7 @@ class Entity extends \ArrayObject implements EntityInterface
         } else {
             $fields = [];
 
-            foreach(get_class_methods($this) as $method)
-            {
+            foreach (get_class_methods($this) as $method) {
                 if (in_array(
                     $method,
                     [
@@ -140,8 +139,7 @@ class Entity extends \ArrayObject implements EntityInterface
                     continue;
                 }
 
-                if(strpos($method, 'get') === 0)
-                {
+                if (strpos($method, 'get') === 0) {
                     $fields[] = Snake::case(substr($method, 3));
                 }
             }
@@ -149,5 +147,4 @@ class Entity extends \ArrayObject implements EntityInterface
             return $fields;
         }
     }
-    
 }
