@@ -54,7 +54,7 @@ class Str extends AbstractPrimitive
      *
      * @return Str
      */
-    static public function cast($string)
+    public static function cast($string)
     {
         if ($string instanceof Str) {
             return $string;
@@ -85,8 +85,11 @@ class Str extends AbstractPrimitive
         
         switch ($mode) {
             case self::UPPER_FIRST:
-                $upperValue = mb_strtoupper(mb_substr($this->getInternalValue(), 0,
-                        1)) . mb_substr($this->getInternalValue(), 1);
+                $upperValue = mb_strtoupper(mb_substr(
+                    $this->getInternalValue(),
+                    0,
+                    1
+                )) . mb_substr($this->getInternalValue(), 1);
                 break;
             
             case self::UPPER_WORDS:
@@ -143,7 +146,6 @@ class Str extends AbstractPrimitive
                 
                 throw new Exception($message, Exception::INVALID_REGEXP);
             }
-            
         } else {
             $limit  = $limit ?: PHP_INT_MAX;
             $result = explode($separator, $this->getInternalValue(), $limit);
@@ -198,8 +200,11 @@ class Str extends AbstractPrimitive
         }
         
         
-        $this->setInternalValue(substr($this->getInternalValue(), 0,
-                $position) . (string)$string . substr($this->getInternalValue(), $position));
+        $this->setInternalValue(substr(
+            $this->getInternalValue(),
+            0,
+            $position
+        ) . (string)$string . substr($this->getInternalValue(), $position));
         
         return $this;
     }
@@ -249,8 +254,11 @@ class Str extends AbstractPrimitive
                 throw new Exception('Offset cannot be negative', Exception::INVALID_PARAMETER);
             }
             
-            $output = ($flags & self::CASE_SENSITIVE) ? strpos($this->getInternalValue(), $string,
-                $offset) : stripos($this->getInternalValue(), $string, $offset);
+            $output = ($flags & self::CASE_SENSITIVE) ? strpos(
+                $this->getInternalValue(),
+                $string,
+                $offset
+            ) : stripos($this->getInternalValue(), $string, $offset);
         }
         
         return $output;
@@ -301,11 +309,9 @@ class Str extends AbstractPrimitive
                 }
                 
                 break;
-            
         }
         
         return $this;
-        
     }
     
     /**
@@ -323,7 +329,6 @@ class Str extends AbstractPrimitive
         } else {
             $function = ($flags & self::CASE_SENSITIVE) ? 'str_replace' : 'str_ireplace';
             $result   = $function($pattern, $replacement, $this->getInternalValue());
-            
         }
         $this->setInternalValue($result);
         
@@ -382,8 +387,10 @@ class Str extends AbstractPrimitive
      */
     public function contains($needle, $flags = 0)
     {
-        return ($flags & self::CASE_SENSITIVE) ? (strpos($this->getInternalValue(),
-                $needle) !== false) : (stripos($this->getInternalValue(), $needle) !== false);
+        return ($flags & self::CASE_SENSITIVE) ? (strpos(
+            $this->getInternalValue(),
+            $needle
+        ) !== false) : (stripos($this->getInternalValue(), $needle) !== false);
     }
     
     /**

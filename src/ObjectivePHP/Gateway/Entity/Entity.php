@@ -123,8 +123,7 @@ class Entity extends \ArrayObject implements EntityInterface
         } else {
             $fields = [];
 
-            foreach(get_class_methods($this) as $method)
-            {
+            foreach (get_class_methods($this) as $method) {
                 if (in_array(
                     $method,
                     [
@@ -140,8 +139,7 @@ class Entity extends \ArrayObject implements EntityInterface
                     continue;
                 }
 
-                if(strpos($method, 'get') === 0)
-                {
+                if (strpos($method, 'get') === 0) {
                     $fields[] = Snake::case(substr($method, 3));
                 }
             }
@@ -149,5 +147,4 @@ class Entity extends \ArrayObject implements EntityInterface
             return $fields;
         }
     }
-    
 }

@@ -10,39 +10,38 @@
      *
      * @package Phocus\Primitives
      */
-    interface PrimitiveInterface extends \JsonSerializable
-    {
-        /**
-         * Set the primitive object initial value
-         *
-         * @param $value
-         *
-         * @return $this
-         */
-        public function setInternalValue($value);
+interface PrimitiveInterface extends \JsonSerializable
+{
+    /**
+     * Set the primitive object initial value
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setInternalValue($value);
 
-        /**
-         * Return the primitive value in its native representation
-         *
-         * @return mixed
-         */
-        public function getInternalValue();
+    /**
+     * Return the primitive value in its native representation
+     *
+     * @return mixed
+     */
+    public function getInternalValue();
 
 
-        /**
-         * Return a cloned primitive
-         *
-         * @return PrimitiveInterface
-         */
-        public function copy();
+    /**
+     * Return a cloned primitive
+     *
+     * @return PrimitiveInterface
+     */
+    public function copy();
 
-        /**
-         * Convert a value to Primitive
-         *
-         * @param $value
-         *
-         * @return static
-         */
-        static public function cast($value);
-
-    }
+    /**
+     * Convert a value to Primitive
+     *
+     * @param $value
+     *
+     * @return static
+     */
+    public static function cast($value);
+}
