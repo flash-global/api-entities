@@ -187,7 +187,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      *
      * @throws Exception
      */
-    public function offsetSet($index, $value)
+    public function offsetSet(mixed $index, mixed $value): void
     {
         $this->set($index, $value);
     }
@@ -200,7 +200,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      * @return mixed|null
      * @throws Exception
      */
-    public function offsetGet($index)
+    public function offsetGet(mixed $index): mixed
     {
         return $this->get($index);
     }
@@ -322,7 +322,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      * @see {@\JsonSerializable}
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->toArray();
     }
@@ -1003,7 +1003,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      * <p>
      * The return value will be casted to boolean if non-boolean was returned.
      */
-    public function offsetExists($offset)
+    public function offsetExists(mixed $offset): bool
     {
         $internalValue = $this->getInternalValue();
         
@@ -1022,7 +1022,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->value[$offset]);
     }
@@ -1034,7 +1034,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      * @link http://php.net/manual/en/iterator.current.php
      * @return mixed Can return any type.
      */
-    public function current()
+    public function current(): mixed
     {
         return current($this->value);
     }
@@ -1046,7 +1046,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      * @link http://php.net/manual/en/iterator.next.php
      * @return void Any returned value is ignored.
      */
-    public function next()
+    public function next(): void
     {
         next($this->value);
     }
@@ -1058,7 +1058,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      * @link http://php.net/manual/en/iterator.key.php
      * @return mixed scalar on success, or null on failure.
      */
-    public function key()
+    public function key(): mixed
     {
         return key($this->value);
     }
@@ -1071,7 +1071,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      * @return boolean The return value will be casted to boolean and then evaluated.
      *       Returns true on success or false on failure.
      */
-    public function valid()
+    public function valid(): bool
     {
         return !is_null(key($this->value));
     }
@@ -1083,7 +1083,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
      * @link http://php.net/manual/en/iterator.rewind.php
      * @return void Any returned value is ignored.
      */
-    public function rewind()
+    public function rewind(): void
     {
         reset($this->value);
     }
@@ -1091,7 +1091,7 @@ class Collection extends AbstractPrimitive implements \ArrayAccess, \Iterator, \
     /**
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->value);
     }
